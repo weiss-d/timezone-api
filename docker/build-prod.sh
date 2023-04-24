@@ -1,0 +1,1 @@
+docker buildx build --tag "${PWD##*/}-prod" --target production --file docker/Dockerfile . 

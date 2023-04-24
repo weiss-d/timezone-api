@@ -1,1 +1,0 @@
-docker build --tag "${PWD##*/}-debug" --target debug --file docker/Dockerfile . 

@@ -1,0 +1,1 @@
+docker run --rm -p 80:8888 "${PWD##*/}-prod"
