@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: 'Timezone Offset Flask REST API'
+  description: 'Timezone offset for given geo coordinates and local time'
+  version: '0.1.0'
+
+
+servers:
+  - url: '/api'
+
+
+components:
+  parameters:
+    lat:
+      name: 'lat'
+      description: 'Latitude in decimal (DD) format'
+      in: query
+      required: True
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+    lng:
+      name: 'lng'
+      description: 'Longitude in decimal (DD) format'
+      in: query
+      required: True
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+    local_time:
+      name: 'local_datetime'
+      description: 'Local date-time in ISO-like format without timezone info: YYYY-MM-DDTHH:MM:SS'
+      in: query
+      required: True
+      schema:
+        type: string
+        format: tz_agnostic_datetime
+
+paths:
+  /utcoffset:
+    get:
+      operationId: 'timezone_api.get_utc_offset'
+      tags:
+        - 'Time'
+      summary: 'Get UTC offset for given coordinates (decimal) and local time (ISO)'
+      parameters:
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/lng'
+        - $ref: '#/components/parameters/local_time'
+      responses:
+        '200':
+          description: 'Successfully got UTC offset'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  'utc_offset':
+                    type: integer
+                    description: 'UTC offset in seconds'
+                    description: A User object

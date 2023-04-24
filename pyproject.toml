@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "timezone-api"
+version = "0.1.0"
+description = ""
+authors = ["Simon Weiss <wonder@simonweiss.space>"]
+packages = [{include = "timezone_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.2.3"
+connexion = {extras = ["swagger-ui"], version = "^2.14.2"}
+pytz = "^2023.3"
+timezonefinder = "^6.2.0"
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "^1.6.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
